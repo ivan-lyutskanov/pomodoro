@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Countdown Timer</title>
+  <link href="https://fonts.googleapis.com/css?family=Wendy+One" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="timer">
+    <div class="timer_navigation">
+      <button data-time="1500" class="timer__button">Work 25</button>
+      <button data-time="300" class="timer__button">Break 5</button>
+      <button data-time="1200" class="timer__button">Coffee 20</button>
+      <button data-time="3600" class="timer__button">Lunch 60</button>
+      <form name="customForm" id="custom">
+        <input type="text" name="minutes" placeholder="Enter Minutes">
+      </form>
+    </div>
+    <div class="display">
+      <h1 class="display__time-left pulse"></h1>
+      <p class="display__end-time"></p>
+      <div id="timer_controls">
+        <button onclick="clearInterval(countdown);changeReturnBtnState(true);"><i class="fas fa-pause"></i> Pause</button>
+        <button onclick="returnBtnState && timer(timerCurrentValue);changeReturnBtnState(false);"><i class="fas fa-play"></i> Return</button>
+        <button onclick="timer(lastSetTimer);changeReturnBtnState(false);"><i class="fas fa-undo-alt"></i> Reset</button>
+      </div>
+    </div>
+  </div>
+  <a id="pomodoro-info" href="https://en.wikipedia.org/wiki/Pomodoro_Technique" title="What is Pomodoro Technique" target="_blank">
+    <i class="fa fa-question-circle"></i>
+  </a>
+  <div id="sound"></div>
+  <script src="app.js"></script>
+  <script>
+    //Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load',() => {
+          navigator.serviceWorker
+              .register('sw_cached_site.js')
+              .then(reg => {console.log('Service Worker - Registered')})
+              .catch(err => {console.log(`Service Worker - Error: ${err}`)})
+      });
+    }
+  </script>
+</body>
+</html>

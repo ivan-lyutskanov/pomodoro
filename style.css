@@ -1,0 +1,197 @@
+/* Animations */
+
+/* Pulse */
+@-webkit-keyframes pulse {
+  25% {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+  }
+  75% {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+  }
+}
+
+.pulse {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+/* Animations - end */
+html {
+  box-sizing: border-box;
+  font-size: 12px;
+  background-color: #77aa77;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 2 1'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%2377aa77'/%3E%3Cstop offset='1' stop-color='%234fd'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23cf8' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23cf8' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='2' y2='2'%3E%3Cstop offset='0' stop-color='%23cf8' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23cf8' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='0' fill='url(%23a)' width='2' height='1'/%3E%3Cg fill-opacity='0.5'%3E%3Cpolygon fill='url(%23b)' points='0 1 0 0 2 0'/%3E%3Cpolygon fill='url(%23c)' points='2 1 2 0 0 0'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #77aa77;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #77aa77;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #77aa77;
+}
+
+body {
+  margin:0;
+  text-align: center;
+  font-family: 'Wendy One', sans-serif;
+  letter-spacing: 0.1rem;
+}
+
+.display__time-left {
+  font-weight: 100;
+  font-size: 20rem;
+  margin: 0;
+  color:white;
+  text-shadow:4px 4px 0 rgba(0,0,0,0.05);
+}
+
+.timer {
+  display:flex;
+  min-height: 100vh;
+  flex-direction:column;
+}
+
+.timer_navigation {
+  display: flex;
+}
+
+.timer_navigation > * {
+  flex:1;
+}
+
+.timer_navigation form {
+  flex:1;
+  display:flex;
+}
+
+.timer_navigation input {
+  position: relative;
+  flex:1;
+  border:0;
+  padding:2rem;
+  font-family: 'Wendy One', sans-serif;
+  letter-spacing: 0.15rem;
+  font-size: 1.5rem;
+  color: #77aa77;
+}
+
+.timer__button {
+  background:none;
+  border:0;
+  cursor: pointer;
+  color:white;
+  font-size: 2rem;
+  text-transform: uppercase;
+  background:rgba(0,0,0,0.1);
+  padding:1rem;
+  font-family: 'Wendy One', sans-serif;
+  letter-spacing: 0.1rem;
+}
+
+.timer__button:hover,
+.timer__button:focus {
+  background:rgba(0,0,0,0.2);
+  outline:0;
+}
+
+.display {
+  flex:1;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.display__end-time {
+  font-size: 4rem;
+  color:white;
+}
+
+.display__end-time > .end_time_val {
+  font-size: 1.2em;
+  text-decoration: underline;
+}
+
+#timer_controls {
+  opacity: 0;
+  display: hidden;
+  transform: translateY(4rem);
+  transition: 1.5s;
+}
+
+#timer_controls.active {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#timer_controls > button {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  color: rgba(0,0,0,0.35);
+  font: inherit;
+  font-size: 2rem;
+  line-height: normal;
+  overflow: visible;
+  opacity: 0.9;
+  padding: 0.7rem;
+  margin: 0.3rem;
+  -webkit-user-select: none; /* for button */
+      -moz-user-select: none;
+      -ms-user-select: none;
+}
+
+#timer_controls > button:hover {
+    transition: color 0.15s, transform 0.4s;
+    transform: scale(1.05);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#timer_controls > button > i {
+  display: inline-block;
+  margin-right: 3px;
+  vertical-align: top;
+}
+
+#pomodoro-info {
+  position: fixed;
+  bottom: 2rem;
+  right: 3rem;
+  font-size: 3.5rem;
+  color: rgba(0,0,0,0.35);
+  text-decoration: none;
+  transition: .3s;
+}
+
+#pomodoro-info:hover,
+#pomodoro-info:focus {
+  transform: scale(1.25);
+  color: rgba(255, 255, 255, 0.9);
+}
